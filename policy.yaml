@@ -1,0 +1,19 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: deny-namespace-creation-from-applications
+spec:
+  validationFailureAction: enforce
+  background: false
+  rules:
+    - name: block-namespace-creation-from-applications
+      match:
+        resources:
+          kinds:
+            - Namespace
+      exclude:
+        clusterRoles:
+          - 'argocd-application-controller'  # Exclude Argo CD controller
+      validate:
+        message: "Creation of Namespace resources is not allowed."
+        deny: {}

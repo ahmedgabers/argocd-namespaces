@@ -10,6 +10,6 @@ spec:
   destinations:
     - namespace: '*'
       server: '*'
-  clusterResourceBlacklist:
-    - group: ''
-      kind: 'Namespace'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
