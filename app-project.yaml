@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: test-project
+  namespace: argocd
+spec:
+  description: Project for testing namespace blacklist
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: '*'
+  clusterResourceBlacklist:
+    - group: ''
+      kind: 'Namespace'
